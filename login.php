@@ -11,7 +11,7 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //get raw data
         $data = json_decode(file_get_contents("php://input", true));
-        $email = mysqli_real_escape_string($db, $data->email);
+        $id_number = mysqli_real_escape_string($db, $data->id_number);
         $password = mysqli_real_escape_string($db, $data->password);
         $query = "SELECT * FROM users WHERE id_number = '$id_number'";
         $res = mysqli_query($db, $query);
@@ -21,6 +21,7 @@ try {
                     $temp = [
                         "id" => $row['id'],
                         "name" => $row['name'],
+                        "balance"=>$row['balance'],
                         "id_number" => $row['id_number'],
                         "dateCreated" => $row['created_at'],
                     ];
